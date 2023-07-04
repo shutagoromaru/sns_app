@@ -21,7 +21,6 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-  
     if params[:post][:image]
       @post.image.attach(params[:post][:image])
     end
