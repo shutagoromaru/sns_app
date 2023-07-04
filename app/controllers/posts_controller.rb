@@ -8,7 +8,6 @@ class PostsController < ApplicationController
     else
       @posts = Post.all
     end
-    debugger
 
     render :index
   end
@@ -40,9 +39,9 @@ class PostsController < ApplicationController
     params.require(:post).permit(:title, :body, :image)
   end
   # ここまで
-end
-　# 課題２－６
-def edit
+  # 課題２－６
+
+  def edit
   render :edit
+  end
 end
-  
