@@ -16,5 +16,5 @@ Rails.application.routes.draw do
   get 'topics/edit/:id', to: 'topics#edit', as: 'edit_topic'
   
   post 'topics/new', to:'topics#create', as: 'creat_topic'
-
+  post 'topics/edit', to:'topics#update', as: 'update_topic'
 end
