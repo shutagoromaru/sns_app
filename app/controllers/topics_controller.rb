@@ -1,6 +1,19 @@
 class TopicsController < ApplicationController
   before_action :set_topic, only: [:edit, :update]
   
+   # ここから加筆
+  def index
+    @title = params[:title]
+    if @title.present?
+      @topics = Topic.where('title LIKE ?', "%#{@title}%")
+    else
+      @topics = Topic.all
+    end
+
+    render :index
+  end
+  
+  
  def new
    @topic = Topic.new
    render :new
@@ -9,7 +22,8 @@ class TopicsController < ApplicationController
  def create
      @topic = Topic.new(topic_params)
    if @topic.save
-     redirect_to @topic
+    # creat_topic_path　に変更
+     redirect_to creat_topic_path
    else
      render :new
    end
