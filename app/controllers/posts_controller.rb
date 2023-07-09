@@ -33,14 +33,35 @@ class PostsController < ApplicationController
     end
   end
 
+  def edit
+    @post = Post.find(params[:id])
+    render :edit
+  end
+
+  def update
+    @post = Post.find(params[:id])
+    if params[:post][:image]
+      @post.image.attach(params[:post][:image])
+    end
+    if @post.update(post_params)
+      redirect_to index_post_path, notice: '更新しました'
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+  
+  # ここから追加
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    redirect_to index_post_path, notice: '削除しました'
+  end
+  # ここまで
+  
+
   private
   def post_params
     params.require(:post).permit(:title, :body, :image)
   end
-  # ここまで
-  # 課題２－６
 
-  def edit
-  render :edit
-  end
 end
