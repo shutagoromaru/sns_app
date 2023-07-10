@@ -1,26 +1,22 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>New Topic</title>
-</head>
-<body>
-  <h1>New Topic</h1>
-  
-  <%= form_with(url: creat_topic_path, model: @topic, local: true, method: :post) do |f| %>
-    <div>
-      <%= f.label :title, "Title" %>
-      <%= f.text_field :title %>
-    </div>
+<div>
+  <h1>スレッド新規登録</h1>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 mx-auto post-form-container">
+      <h2 class="h2">スレッド新規登録</h2>
+      <%= form_with(url: create_post_path, local: true, method: :post ) do |f| %>
 
-    <div>
-      <%= f.label :content, "Content" %>
-      <%= f.text_area :content %>
-    </div>
+        <div class="form-group">
+          <%= f.label "スレッド名", class: 'form-label' %>
+          <%= f.text_field :title, class: 'form-control' %>
+        </div>
 
-    <div>
-      <%= f.submit "Create" %>
+        <div class="button-group">
+          <%= f.submit '登録', class: 'btn btn-primary' %>
+        </div>
+      <% end %>
     </div>
-  <% end %>
-</body>
-</html>
+  </div>
+</div>
 

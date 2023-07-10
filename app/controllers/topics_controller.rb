@@ -1,7 +1,7 @@
 class TopicsController < ApplicationController
   before_action :set_topic, only: [:edit, :update]
   
-   # ここから加筆
+  
   def index
     @title = params[:title]
     if @title.present?
@@ -22,8 +22,8 @@ class TopicsController < ApplicationController
  def create
      @topic = Topic.new(topic_params)
    if @topic.save
-    # creat_topic_path　に変更
-     redirect_to creat_topic_path
+    # creat_topic_path　から変更
+     redirect_to topic_path(@topic)
    else
      render :new
    end

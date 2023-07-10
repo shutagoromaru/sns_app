@@ -5,19 +5,20 @@
   <% end %>
 </div>
 
-<div class="post-list">
+<div class="topic-list">
   <% @topic.each do |topic| %>
-    <div class="topic">
+       <a class="topic" href="<%= new_comment_path(topic) %>">
       <div class="header">
         <h2 class="title"><%= topic.title %></h2>
         <p class="timestamp"><%= topic.created_at.strftime("%B %d, %Y") %></p>
       </div>
       <div class="body">
-        <p class="content"><%= topic.content %></p>
+        <p class="content"><%= topic.body %></p>
       </div>
       <div class="image">
         <%= image_tag(topic.image) if topic.image.attached? %>
       </div>
-    </div>
+    <!-- 以下の行をdivタグからaタグに変更する -->
+    </a>
   <% end %>
 </div>
