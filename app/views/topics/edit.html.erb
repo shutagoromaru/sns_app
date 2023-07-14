@@ -1,20 +1,40 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Edit Topic</title>
-</head>
-<body>
-  <h1>Edit Topic</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 mx-auto topic-form-container">
+      <h2 class="h2">投稿編集</h2>
+      <%= form_with(url: update_topic_path, model: @topic, local: true, method: :post, html: { class: 'post-form' }) do |f| %>
 
-  <!-- This form is just a placeholder and will not actually work. Replace with your form_for or form_with -->
-  <form action="/topics" method="post">
-    <label for="title">Title</label>
-    <input type="text" id="title" name="title">
+        <% if @topic.errors.any? %>
+          <ul>
+            <% @topic.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %> </ul>
+        <% end %>
 
-    <label for="body">Body</label>
-    <textarea id="body" name="body"></textarea>
+        <div class="form-group">
+          <%= f.label "タイトル", class: 'form-label' %>
+          <%= f.text_field :title, value: @topic.title, class: 'form-control' %>
+        </div>
 
-    <input type="submit" value="Update Topic">
-  </form>
-</body>
-</html>
+        <div class="form-group">
+          <%= f.label "本文", class: 'form-label' %>
+          <%= f.text_area :body, value: @topic.body, class: 'form-control' %>
+        </div>
+
+        <div class="form-group image-upload">
+          <%= f.label "画像", class: 'form-label' %>
+          <div class="image-preview" id="imagePreview">
+            <img src="<%= @topic.image.attached? ? url_for(@topic.image) : "" %>" alt="Image Preview" class="image-preview__image <%= @topic.image.attached? ? "-block" : "" %>">
+            <span class="image-preview__default-text <%= @topic.image.attached? ? "-none" : "" %>">No image uploaded</span>
+          </div>
+          <%= f.file_field :image, class: 'form-control-file', id: 'imageUpload' %>
+        </div>
+
+        <div class="button-group">
+          <%= link_to '削除', destroy_topic_path(@topic), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger" %>
+          <%= f.submit '更新', class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

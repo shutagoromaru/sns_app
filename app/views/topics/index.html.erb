@@ -6,8 +6,9 @@
 </div>
 
 <div class="topic-list">
-  <% @topic.each do |topic| %>
-       <a class="topic" href="<%= new_comment_path(topic) %>">
+  <% @topics.each do |topic| %>
+    <!-- 以下の行をdivタグからaタグに変更する -->
+    <a class="topic" href="<%= new_comment_path(topic) %>">
       <div class="header">
         <h2 class="title"><%= topic.title %></h2>
         <p class="timestamp"><%= topic.created_at.strftime("%B %d, %Y") %></p>

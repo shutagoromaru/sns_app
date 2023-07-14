@@ -23,23 +23,36 @@ class TopicsController < ApplicationController
      @topic = Topic.new(topic_params)
    if @topic.save
     # creat_topic_path　から変更
-     redirect_to topic_path(@topic)
+     redirect_to index_topic_path, notice: '登録しました'
    else
      render :new
    end
  end 
 
  def edit
-   render :edit
+    @topic = Topic.find(params[:id])
+    render :edit
  end
 
  def update
-  if @topic.update(topic_params)
-     redirect_to @topic
-  else
-     render :edit
-  end
+   @topic = Topic.find(params[:id])
+    if params[:topic][:image]
+      @topic.image.attach(params[:topic][:image])
+    end
+    if @topic.update(topic_params)
+      redirect_to index_topic_path, notice: '更新しました'
+    else
+      render :edit, status: :unprocessable_entity
+    end
  end 
+ 
+ # ここから追加
+  def destroy
+    @topic = Topic.find(params[:id])
+    @topic.destroy
+    redirect_to index_topic_path, notice: '削除しました'
+  end
+  # ここまで
 
   private
 

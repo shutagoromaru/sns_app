@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
+  
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
@@ -24,8 +25,11 @@ Rails.application.routes.draw do
   # ここまで
 
   # TopicsController
+  get 'topics', to: 'topics#index', as: 'index_topic'
   get 'topics/new', to: 'topics#new', as: 'new_topic'
   post '/topics/new', to: 'topics#create', as: 'create_topic'
   get 'topics/edit/:id', to: 'topics#edit', as: 'edit_topic'
   post '/topics/edit/:id', to: 'topics#update', as: 'update_topic'
+ # この行を追加
+  delete 'topics/destroy/:id', to: 'topics#destroy', as: 'destroy_topic'
 end
