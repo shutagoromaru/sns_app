@@ -9,7 +9,6 @@ class TopicsController < ApplicationController
     else
       @topics = Topic.all
     end
-
     render :index
   end
   
@@ -31,6 +30,7 @@ class TopicsController < ApplicationController
 
  def edit
     @topic = Topic.find(params[:id])
+    
     render :edit
  end
 

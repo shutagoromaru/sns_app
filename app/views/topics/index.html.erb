@@ -8,16 +8,16 @@
 <div class="topic-list">
   <% @topics.each do |topic| %>
     <!-- 以下の行をdivタグからaタグに変更する -->
-    <a class="topic" href="<%= new_comment_path(topic) %>">
+    <a class="topic" href="<%= edit_topic_path(topic.id) %>">
       <div class="header">
         <h2 class="title"><%= topic.title %></h2>
         <p class="timestamp"><%= topic.created_at.strftime("%B %d, %Y") %></p>
       </div>
       <div class="body">
-        <p class="content"><%= topic.body %></p>
+        <p class="content"><%= topic.content %></p>
       </div>
       <div class="image">
-        <%= image_tag(topic.image) if topic.image.attached? %>
+       
       </div>
     <!-- 以下の行をdivタグからaタグに変更する -->
     </a>

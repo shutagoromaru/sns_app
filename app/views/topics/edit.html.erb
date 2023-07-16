@@ -18,17 +18,10 @@
 
         <div class="form-group">
           <%= f.label "本文", class: 'form-label' %>
-          <%= f.text_area :body, value: @topic.body, class: 'form-control' %>
+          <%= f.text_area :content, value: @topic.content, class: 'form-control' %>
         </div>
 
-        <div class="form-group image-upload">
-          <%= f.label "画像", class: 'form-label' %>
-          <div class="image-preview" id="imagePreview">
-            <img src="<%= @topic.image.attached? ? url_for(@topic.image) : "" %>" alt="Image Preview" class="image-preview__image <%= @topic.image.attached? ? "-block" : "" %>">
-            <span class="image-preview__default-text <%= @topic.image.attached? ? "-none" : "" %>">No image uploaded</span>
-          </div>
-          <%= f.file_field :image, class: 'form-control-file', id: 'imageUpload' %>
-        </div>
+       
 
         <div class="button-group">
           <%= link_to '削除', destroy_topic_path(@topic), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger" %>
