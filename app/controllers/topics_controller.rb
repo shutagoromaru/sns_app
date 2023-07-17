@@ -36,8 +36,8 @@ class TopicsController < ApplicationController
 
  def update
    @topic = Topic.find(params[:id])
-    if params[:topic][:image]
-      @topic.image.attach(params[:topic][:image])
+    if params[:topic]
+      @topic.attach(params[:topic])
     end
     if @topic.update(topic_params)
       redirect_to index_topic_path, notice: '更新しました'
